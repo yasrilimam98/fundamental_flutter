@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 // Fungsi yang di jalan pertama kali
@@ -11,66 +12,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // Membuat List di widget agar tidak di masukin manual
-  List<Widget> widgets = [];
-  // Membuat counter untuk mencatat nomor
-  int counter = 1;
+// Membuat object random
+// Membuat object random untuk nilai random pada animated container
+  Random random = Random();
 
-  // Membuat Constructor state
-  // _MyAppState() {
-  //   // Looping data list
-  //   for (int i = 0; i < 25; i++)
-  //     widgets.add(Text(
-  //       "Data ke -" + i.toString(),
-  //       style: TextStyle(fontSize: 40),
-  //     ));
-  // }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan ListView"),
+          title: Text("Container Animation"),
         ),
-        body: ListView(
-          // memanggil widgets di list ke dalam children
-          // Menambahkan row ke dalam widget untuk membuat buttom ke samping
-          children: <Widget>[
-            Row(
-              // Agar button tidak mepet tambahin Main Axisligment
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("Tambah Data"),
-                  onPressed: () {
-                    // Anonymous method di dalam nya ada counter untuk tambah data
-                    setState(() {
-                      widgets.add(Text(
-                        "Data ke-" + counter.toString(),
-                        style: TextStyle(fontSize: 40),
-                      ));
-                      counter++;
-                    });
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Hapus Data"),
-                  onPressed: () {
-                    // Anonymous method di dalam nya ada counter untuk hapus data
-                    setState(() {
-                      widgets.removeLast();
-                      counter--;
-                    });
-                  },
-                )
-              ],
+        body: Center(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {});
+            },
+            child: AnimatedContainer(
+              // Properti Animated Container
+              color: Color.fromARGB(255, random.nextInt(256),
+                  random.nextInt(256), random.nextInt(256)),
+              duration: Duration(seconds: 1),
+              width: 50.0 + random.nextInt(101),
+              height: 50.0 + random.nextInt(101),
             ),
-            Column(
-              // Cross axisligment untuk horizontal
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widgets,
-            )
-          ],
+          ),
         ),
       ),
     );
