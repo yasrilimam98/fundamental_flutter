@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
           title: Text("Container Animation"),
         ),
         body: Center(
+          // Gesture mengecek prilaku terhadap widget
           child: GestureDetector(
             onTap: () {
               setState(() {});
